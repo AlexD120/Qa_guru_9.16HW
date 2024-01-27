@@ -20,4 +20,10 @@ def mobile_browser(request):
 
 @pytest.fixture(params=[(1920, 1080), (1280, 720), (800, 480), (480, 360)])
 def skip_mobile_browser(request):
-
+    width, height = request.param
+    browser.config.window_width = width
+    browser.config.window_height = height
+    if width > 800:
+        yield 'desktop'
+    else:
+        yield 'mobile'

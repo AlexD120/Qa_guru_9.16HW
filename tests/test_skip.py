@@ -11,7 +11,9 @@ import pytest
 @allure.severity('critical')
 @allure.label("owner", "Davydov")
 @pytest.mark.desktop
-def test_desktop_autorization():
+def test_desktop_autorization(skip_mobile_browser):
+    if skip_mobile_browser == 'desktop':
+        pytest.skip("Мобильный размер окна браузера ")
     app.simple_user_desctop_autorization_page.open()
     app.simple_user_desctop_autorization_page.sign_in()
     app.simple_user_desctop_autorization_page.verify_text_header()
@@ -25,7 +27,9 @@ def test_desktop_autorization():
 @allure.severity('critical')
 @allure.label("owner", "Davydov")
 @pytest.mark.mobile
-def test_mobile_autorization(mobile_browser):
+def test_mobile_autorization(skip_mobile_browser):
+    if skip_mobile_browser == 'mobile':
+        pytest.skip("Десктопный размер окна браузера ")
     app.simple_user_mobile_autorization_page.open()
     app.simple_user_mobile_autorization_page.buttonn()
     app.simple_user_mobile_autorization_page.sign_in()
