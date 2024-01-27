@@ -2,3 +2,7 @@
 addopts =
     --clean-alluredir
     --alluredir=allure-results
+
+markers =
+    desctop: test for UI
+    mobile: test for mobile
